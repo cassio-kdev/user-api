@@ -2,6 +2,8 @@ package br.com.kdev.model.dto;
 
 import java.util.Date;
 
+import br.com.kdev.model.User;
+
 public class UserDTO {
 
 	private String nome;
@@ -59,9 +61,14 @@ public class UserDTO {
 		this.dataCadastro = dataCadastro;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDTO [nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + ", email=" + email + ", telefone="
-				+ telefone + ", dataCadastro=" + dataCadastro + "]";
+	public static UserDTO convert(User user) {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setNome(user.getNome());
+		userDTO.setEndereco(user.getEndereco());
+		userDTO.setCpf(user.getCpf());
+		userDTO.setEmail(user.getEmail());
+		userDTO.setTelefone(user.getTelefone());
+		userDTO.setDataCadastro(user.getDataCadastro());
+		return userDTO;
 	}
 }
