@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.kdev.dto.UserDTO;
+import br.com.kdev.exception.UserNotFoundException;
 import br.com.kdev.model.User;
 import br.com.kdev.model.dto.DTOConverter;
 import br.com.kdev.repository.UserRepository;
@@ -30,7 +31,7 @@ public class UserService {
 		if (usuario.isPresent()) {
 			return DTOConverter.convert(usuario.get());
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public UserDTO save(UserDTO userDTO) {
@@ -44,7 +45,7 @@ public class UserService {
 		if (user.isPresent()) {
 			userRepository.delete(user.get());
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public UserDTO findByCpf(String cpf) {
@@ -52,7 +53,7 @@ public class UserService {
 		if (user != null) {
 			return DTOConverter.convert(user);
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public List<UserDTO> queryByName(String name) {

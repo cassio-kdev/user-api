@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.kdev.dto.UserDTO;
-import br.com.kdev.error.UserNotFoundException;
 import br.com.kdev.model.dto.DTOConverter;
 import br.com.kdev.service.UserService;
 
@@ -22,7 +21,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/user/")
+	@GetMapping("/user")
 	public List<UserDTO> getUsers() {
 		List<UserDTO> usuarios = userService.getAll();
 		return usuarios;
@@ -44,7 +43,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/user/{id}")
-	DTOConverter delete(@PathVariable Long id) throws UserNotFoundException {
+	DTOConverter delete(@PathVariable Long id){
 		return userService.delete(id);
 	}
 
