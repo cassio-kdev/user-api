@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.kdev.dto.UserDTO;
 import br.com.kdev.error.UserNotFoundException;
-import br.com.kdev.model.dto.UserDTO;
+import br.com.kdev.model.dto.DTOConverter;
 import br.com.kdev.service.UserService;
 
 @RestController
@@ -28,22 +29,22 @@ public class UserController {
 	}
 
 	@GetMapping("/user/{id}")
-	UserDTO findById(@PathVariable Long id) {
+	public UserDTO findById(@PathVariable Long id) {
 		return userService.findById(id);
 	}
 
 	@PostMapping("/user")
-	UserDTO newUser(@RequestBody UserDTO userDTO) {
+	public UserDTO newUser(@RequestBody UserDTO userDTO) {
 		return userService.save(userDTO);
 	}
 
 	@GetMapping("/user/cpf/{cpf}")
-	UserDTO findByCpf(@PathVariable String cpf) {
+	public UserDTO findByCpf(@PathVariable String cpf) {
 		return userService.findByCpf(cpf);
 	}
 
 	@DeleteMapping("/user/{id}")
-	UserDTO delete(@PathVariable Long id) throws UserNotFoundException {
+	DTOConverter delete(@PathVariable Long id) throws UserNotFoundException {
 		return userService.delete(id);
 	}
 
