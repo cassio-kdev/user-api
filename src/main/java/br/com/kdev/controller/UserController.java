@@ -38,12 +38,12 @@ public class UserController {
 	}
 
 	@GetMapping("/user/cpf/{cpf}")
-	public UserDTO findByCpf(@PathVariable String cpf) {
-		return userService.findByCpf(cpf);
+	UserDTO findByCpf(@RequestParam(name = "key", required = true) String key, @PathVariable String cpf) {
+		return userService.findByCpf(cpf, key);
 	}
 
 	@DeleteMapping("/user/{id}")
-	DTOConverter delete(@PathVariable Long id){
+	DTOConverter delete(@PathVariable Long id) {
 		return userService.delete(id);
 	}
 
