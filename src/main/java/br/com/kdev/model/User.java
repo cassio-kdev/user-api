@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import br.com.kdev.dto.UserDTO;
-import br.com.kdev.model.dto.DTOConverter;
 
 @Entity
 public class User {
@@ -22,7 +21,9 @@ public class User {
 	private String email;
 	private String telefone;
 	private Date dataCadastro;
-
+	private String key;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -79,6 +80,14 @@ public class User {
 		this.dataCadastro = dataCadastro;
 	}
 
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	public static User convert(UserDTO userDTO) {
 		User user = new User();
 		user.setNome(userDTO.getNome());
@@ -87,6 +96,7 @@ public class User {
 		user.setEmail(userDTO.getEmail());
 		user.setTelefone(userDTO.getTelefone());
 		user.setDataCadastro(userDTO.getDataCadastro());
+		user.setKey(userDTO.getKey());
 		return user;
 	}
 
